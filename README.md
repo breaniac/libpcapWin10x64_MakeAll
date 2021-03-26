@@ -6,6 +6,8 @@
 5. The extended project which lookong for network STUN and RTP pakets is in "readfile" subproject. 
 
 Nodes from libpcap repo about windows configuration and setup of the project:
+**The project based on Npcap and its SDK, described bellow!**
+
 Building libpcap on Windows with Visual Studio
 Unlike the UN*Xes on which libpcap can capture network traffic, Windows has no network traffic capture mechanism that libpcap can use. Therefore, libpcap requires a driver, and a library to access the driver, provided by the Npcap or WinPcap projects.
 

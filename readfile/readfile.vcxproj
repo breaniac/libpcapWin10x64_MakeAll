@@ -69,7 +69,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;HAVE_REMOTE;WPCAP;SIZEOF_CHAR=1;SIZEOF_INT=2;SIZEOF_LONG=4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;HAVE_REMOTE;WPCAP;_CRT_SECURE_NO_WARNINGS;SIZEOF_CHAR=1;SIZEOF_INT=2;SIZEOF_LONG=4;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\npcap-sdk-0.1\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -87,7 +87,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;HAVE_REMOTE;WPCAP;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;HAVE_REMOTE;WPCAP;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\npcap-sdk-0.1\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -137,9 +137,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NpcapNework.cpp" />
     <ClCompile Include="Pcap.cpp" />
     <ClCompile Include="readfile.c" />
     <ClCompile Include="rtp_t.cpp" />
+    <ClCompile Include="Service.cpp" />
     <ClCompile Include="stun_t.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
@@ -147,8 +149,10 @@
     <ClInclude Include="defs.h" />
     <ClInclude Include="Headers\tcp.h" />
     <ClInclude Include="Headers\udp.h" />
+    <ClInclude Include="NpcapNework.h" />
     <ClInclude Include="Pcap.h" />
     <ClInclude Include="rtp_t.h" />
+    <ClInclude Include="Service.h" />
     <ClInclude Include="stun_t.h" />
     <ClInclude Include="tjson.hpp" />
     <ClInclude Include="types.h" />

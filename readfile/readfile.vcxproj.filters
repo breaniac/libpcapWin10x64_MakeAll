@@ -7,6 +7,8 @@
     <ClCompile Include="rtp_t.cpp" />
     <ClCompile Include="stun_t.cpp" />
     <ClCompile Include="utils.cpp" />
+    <ClCompile Include="NpcapNework.cpp" />
+    <ClCompile Include="Service.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="defs.h" />
@@ -18,5 +20,7 @@
     <ClInclude Include="utils.h" />
     <ClInclude Include="Headers\tcp.h" />
     <ClInclude Include="Headers\udp.h" />
+    <ClInclude Include="NpcapNework.h" />
+    <ClInclude Include="Service.h" />
   </ItemGroup>
 </Project>

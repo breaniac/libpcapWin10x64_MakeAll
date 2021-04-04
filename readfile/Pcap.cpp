@@ -30,13 +30,14 @@ bool Pcap::init(const char *fname)
 
 void Pcap::operator ++()
 {
-    m_nextRes.data = pcap_next(p_Cap, &m_nextRes.out);
-#ifndef _DEBUG
-    
-    packetCount++;
+    //m_nextRes.data = pcap_next(p_Cap, &m_nextRes.out);
+    m_nextRes.data = pcap_next(adhandle, &m_nextRes.out);
+
+#ifdef _DEBUG
 //#else
     struct pcap_pkthdr* out;
-    while (int returnValue = pcap_next_ex(p_Cap, &out, &m_nextRes.data) >= 0)
+    //while (int returnValue = pcap_next_ex(p_Cap, &out, &m_nextRes.data) >= 0)
+    while (int returnValue = pcap_next_ex(adhandle, &out, &m_nextRes.data) >= 0)
     {
         // Print using printf. See printf reference:
         // http://www.cplusplus.com/reference/clibrary/cstdio/printf/
@@ -79,7 +80,13 @@ Result_t& Pcap::next()
 
 bool Pcap::hasNext() const
 {
-    return  m_nextRes.data != nullptr;
+    if (DUMP_PAKETS == packetCount)
+    {
+        packetCount = 0;
+        return false;
+    }
+    return true;
+    //return  m_nextRes.data != nullptr;
 }
 
 /**
@@ -87,16 +94,20 @@ bool Pcap::hasNext() const
  */
 void Pcap::loop()
 {
-    for(Result_t& res =  next(); hasNext(); operator++())
+    //for(Result_t& res =  next(); hasNext(); operator++())
+    while (1)
     {
-        auto resultNwork = VParse(StunRFC{res},
-                                  RtpRFC{res});
-        (void)resultNwork;
+        for (Result_t& res = next(); hasNext(); operator++())
+        {
+            auto resultNwork = VParse(StunRFC{ res },
+                RtpRFC{ res });
+            (void)resultNwork;
+        }
+        std::ofstream jsonfile;
+        jsonfile.open("out.json");
+        jsonfile << serializer.serialize();
+        jsonfile.close();
     }
-    std::ofstream jsonfile;
-    jsonfile.open ("out.json");
-    jsonfile<< serializer.serialize();
-    jsonfile.close();
 }
 
 

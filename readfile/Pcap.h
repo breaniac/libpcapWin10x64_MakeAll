@@ -3,15 +3,16 @@
 #include "defs.h"
 #include "types.h"
 #include "tjson.hpp"
+#include "NpcapNework.h"
+
 #include <memory>
 #include <pcap/pcap.h>
 #include <optional>
 
-class Pcap
+class Pcap : public NpcapNework
 {
-
 public:
-
+#define DUMP_PAKETS 300
 
     Pcap();
 
@@ -42,7 +43,7 @@ protected:
         return protocol();
     }
 
-    int packetCount;
+    mutable int packetCount;
     pcap_t* p_Cap;
 
     char errbuf[PCAP_ERRBUF_SIZE];
@@ -65,6 +66,7 @@ private:
         if (resultready.valid()) {
             value.value.type = resultready.type();
             serializer.add(resultready.jsonb);
+            packetCount++;
             return value.value;
         }
         // how to not pass the result ready here?

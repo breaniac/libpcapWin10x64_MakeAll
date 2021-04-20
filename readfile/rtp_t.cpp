@@ -71,6 +71,7 @@ namespace rtp {
     template<typename T>
     void RtpRFC::parse(T data)
     {
+        IntHistogram trpWindow;
         m_fields.cc = (data.meta[0] << 4) & 0xf0;
         m_fields.v = (data.meta[0] >> 6);
         m_fields.p = (data.meta[0] >> 5) & 0x1;
@@ -83,6 +84,10 @@ namespace rtp {
         jsonb.add(tjson::JsonField{"protocol", "RTP"});
         jsonb.add(tjson::JsonField{"CC", m_fields.cc});
         jsonb.add(tjson::JsonField{"ssrc", m_fields.ssrc});
+
+        trpWindow.updIntHitogramData(m_fields.ssrc);
+        //trpWindow.openNewConsoleWindow("RTP Monitoring");
+        //trpWindow.printHistogram();
         return; //just brek here
     }
 

@@ -90,11 +90,14 @@ namespace stun {
     AppName StunRFC::app()
     {
         jsonb.add(tjson::JsonField{"tokens", m_properties.tokens});
+        StrHistogram trpWindow;
 
         AppName n = Unknown;
         if (m_properties.tokens >= 2) {
             n = AppName::WhatsApp;
             jsonb.add(tjson::JsonField{"app", "WhatsApp"});
+
+            trpWindow.updStrHitogramData("WhatsApp");
             return n;
         } else {
             switch (m_properties.priority) {
@@ -103,25 +106,35 @@ namespace stun {
             case 1862270462: {
                 n = AppName::Skype;
                 jsonb.add(tjson::JsonField{"app", "Skype"});
+
+                trpWindow.updStrHitogramData("Skype");
                 break;
             }
             case 1845501695: {
                 n = AppName::Facebook;
                 jsonb.add(tjson::JsonField{"app", "Facebook"});
+
+                trpWindow.updStrHitogramData("Facebook");
                 break;
             }
             case 1853824768: {
                 n = AppName::Telegram;
                 jsonb.add(tjson::JsonField{"app", "Telegram"});
+
+                trpWindow.updStrHitogramData("Telegram");
                 break;
             }
             case 1853824767: {
                 n = AppName::GoogleMeet;
                 jsonb.add(tjson::JsonField{"app", "GoogleMeet"});
+
+                trpWindow.updStrHitogramData("GoogleMeet");
                 break;
             }
             default: {
                 jsonb.add(tjson::JsonField{"app", "Unknown"});
+
+                trpWindow.updStrHitogramData("Unknown");
                 break;
                 }
             }            

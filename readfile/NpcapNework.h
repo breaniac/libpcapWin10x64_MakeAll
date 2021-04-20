@@ -17,8 +17,11 @@ enum class NcapRetCodes { Ok, retr_list, out_of_range, open_adapter_err, NA };
 class NpcapNework
 {
 public:
-    NpcapNework() {};
-   ~ NpcapNework() { pcap_close(adhandle); };
+    NpcapNework() : adhandle(NULL){};
+   ~ NpcapNework() { 
+       if(NULL != adhandle)
+            pcap_close(adhandle);
+   };
 
    typedef void(*callback)(u_char* arg, const struct pcap_pkthdr* pkthdr, const u_char* packet);
    

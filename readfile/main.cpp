@@ -1,13 +1,29 @@
 #include <iostream>
-#include <pcap/pcap.h>
+#include<thread>
+//#include <pcap/pcap.h>
 #include "Pcap.h"
 //#include "NpcapNework.h"
+
 #include "utils.h"
 
 #include <fstream>
 #include <csignal>
 
+#include <algorithm>
+#include <vector>
+#include <map>
+#include <set>
+#include <iomanip>
+#include <thread>
+
+//#include <SFML/Graphics.hpp>
+//#include <SFML/Graphics/Text.hpp>
+//#include <SFML/Graphics/Font.hpp>
+
+//#include "ConsoleHistogram.h"
+
 using namespace std;
+//using namespace sf;
 
 #if 0
 void my_callback(u_char* args, const struct pcap_pkthdr* pkthdr, const u_char*
@@ -66,6 +82,31 @@ void packet_handler(u_char* param, const struct pcap_pkthdr* header, const u_cha
 }
 #endif
 
+void trp_page(const std::string& url)
+{
+    // simulate a long page fetch
+    while (1) {
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+        IntHistogram trpWindow(10);
+
+        trpWindow.openNewConsoleWindow(url);
+        trpWindow.printHistogram();
+    }
+}
+
+void stun_page(const std::string& url)
+{
+    // simulate a long page fetch
+    while (1) {
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+        StrHistogram trpWindow(100);
+
+        trpWindow.openNewConsoleWindow(url);
+        trpWindow.printHistogram();
+    }
+}
+
+
 int main(int argc, char** argv)
 {
 #ifdef _DEBUG
@@ -77,6 +118,10 @@ int main(int argc, char** argv)
     //}
     //NpcapNework userNetwork;
     Pcap p;
+
+    //std::thread t1(save_page, "RTP Monitoring");
+    //t1.join();
+    //t2.join();
 
     int iRetValue = 0;
     if (NcapRetCodes::Ok == p.findNewrokDevices(iRetValue))// userNetwork.findNewrokDevices(iRetValue))
@@ -91,7 +136,8 @@ int main(int argc, char** argv)
 
     if (NcapRetCodes::Ok == p.setupSelectedAdapter(iRetValue))
     {
-        //userNetwork.lisseningdAdapter(packet_handler);
+        std::thread t1(trp_page, "RTP Monitoring");
+        std::thread t2(stun_page, "STUN Monitoring");
         p.loop();
     }
     else
@@ -99,7 +145,16 @@ int main(int argc, char** argv)
         printf("Error during of SetUP of the selected adapter.\n");
     }
 
-    system("PAUSE");
+
+
+    //Pcap p;
+    //StrHistogram hist1;
+
+    //hist1.openNewConsoleWindow();
+    //hist1.printHistogram();
+    //hist1.closeConsoleWindow();
+    
+    //system("PAUSE");
 
 #else
     Pcap p;

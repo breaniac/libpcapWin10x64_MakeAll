@@ -4,15 +4,17 @@
 #include "types.h"
 #include "tjson.hpp"
 #include "NpcapNework.h"
+#include "ConsoleHistogram.h"
 
 #include <memory>
 #include <pcap/pcap.h>
 #include <optional>
 
+#define DUMP_PAKETS 300
+
 class Pcap : public NpcapNework
 {
 public:
-#define DUMP_PAKETS 300
 
     Pcap();
 

@@ -2,6 +2,7 @@
 #define TYPES_H
 #include "tjson.hpp"
 #include <pcap/pcap.h>
+#include <map>
 
 template <typename T>
 struct IParseable
@@ -31,6 +32,12 @@ struct Result_t
 
     TypeRFC type;
 
+};
+
+struct mapDataHistogram 
+{
+    std::map<std::string, int> mapStunStatistics;
+    std::map<int, int> mapRtpStatistics;
 };
 
 

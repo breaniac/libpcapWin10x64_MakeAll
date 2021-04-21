@@ -147,12 +147,9 @@ public:
 		bool bStat = false;
 		CConsoleLoggerEx* sngPrt = getInstance(bStat);
 
-		//Clear window before draw on it
-		sngPrt->cls();
-
-		//double stepHist = maxStepHist / HISTOGRAM_RESOLUTION;
 		double stepHist = iPixel;
 
+		string printData("");
 		for (auto it : mapStrHistData)
 		{
 			char arr[LABLES_MAX_SIZE] = { 0 };
@@ -161,19 +158,23 @@ public:
 			memcpy(arr, it.first.c_str(), it.first.size());
 			string tp(arr);
 			tp += " | ";
-			sngPrt->cprintf(tp.c_str());
 
 			int iResolution = (it.second / (int)stepHist < HISTOGRAM_RESOLUTION) ? (it.second / (int)stepHist) : HISTOGRAM_RESOLUTION;
 			vector<int> vect(iResolution, DRAW_SYMBOL_CODE);
 			string str(vect.begin(), vect.end());
 
-			tp = str;
+			tp += str;
 			tp += " [";
 			tp += std::to_string(it.second);
 			tp += "]\n";
 
-			sngPrt->cprintf(sngPrt->COLOR_GREEN, tp.c_str());
-			tp = "";
+			printData += tp;
+		}
+
+		if (0 != printData.compare(""))
+		{
+			sngPrt->cls();
+			sngPrt->cprintf(sngPrt->COLOR_GREEN, printData.c_str());
 		}
 	}
 };
@@ -293,16 +294,10 @@ public:
 	{
 		bool bStat = false;
 		CConsoleLoggerEx* sngPrt = getInstance(bStat);
-		//Clear window before draw on it
-		sngPrt->cls();
 
-		//double stepHist = maxStepHist / HISTOGRAM_RESOLUTION;
 		double stepHist = iPixel;
 
-		//First init to protect tealtime exeption
-		//if (0.0f == stepHist)
-		//	stepHist = HISTOGRAM_RESOLUTION / HISTOGRAM_RESOLUTION;
-
+		string printData("");
 		for (auto it : mapIntHistData)
 		{
 			if (it.second >= 3)
@@ -313,21 +308,24 @@ public:
 				memcpy(arr, strConvert.c_str(), strConvert.size());
 				string tp(arr);
 				tp += " | ";
-				sngPrt->cprintf(tp.c_str());
 
 				int iResolution = (it.second / (int)stepHist < HISTOGRAM_RESOLUTION) ? (it.second / (int)stepHist) : HISTOGRAM_RESOLUTION;
 				vector<int> vect(iResolution, DRAW_SYMBOL_CODE);
-				//vector<int> vect(it.second / (int)stepHist, DRAW_SYMBOL_CODE);
 				string str(vect.begin(), vect.end());
 
-				tp = str;
+				tp += str;
 				tp += " [";
 				tp += std::to_string(it.second);
 				tp += "]\n";
 
-				sngPrt->cprintf(sngPrt->COLOR_GREEN, tp.c_str());
-				tp = "";
+				printData += tp;
 			}
+		}
+
+		if (0 != printData.compare(""))
+		{
+			sngPrt->cls();
+			sngPrt->cprintf(sngPrt->COLOR_GREEN, printData.c_str());
 		}
 	}
 };

@@ -144,7 +144,6 @@
     <ClCompile Include="Pcap.cpp" />
     <ClCompile Include="readfile.c" />
     <ClCompile Include="rtp_t.cpp" />
-    <ClCompile Include="Service.cpp" />
     <ClCompile Include="stun_t.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
@@ -157,7 +156,6 @@
     <ClInclude Include="NpcapNework.h" />
     <ClInclude Include="Pcap.h" />
     <ClInclude Include="rtp_t.h" />
-    <ClInclude Include="Service.h" />
     <ClInclude Include="stun_t.h" />
     <ClInclude Include="tjson.hpp" />
     <ClInclude Include="types.h" />

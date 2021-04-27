@@ -1,29 +1,9 @@
-#include <iostream>
+
 #include<thread>
-//#include <pcap/pcap.h>
 #include "Pcap.h"
-//#include "NpcapNework.h"
-
-#include "utils.h"
-
-#include <fstream>
-#include <csignal>
-
-#include <algorithm>
-#include <vector>
-#include <map>
-#include <set>
-#include <iomanip>
-#include <thread>
-
-//#include <SFML/Graphics.hpp>
-//#include <SFML/Graphics/Text.hpp>
-//#include <SFML/Graphics/Font.hpp>
-
-//#include "ConsoleHistogram.h"
+#include "ConsoleHistogram.h"
 
 using namespace std;
-//using namespace sf;
 
 #if 0
 void my_callback(u_char* args, const struct pcap_pkthdr* pkthdr, const u_char*

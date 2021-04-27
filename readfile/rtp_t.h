@@ -2,9 +2,8 @@
 #define RTP_T_H
 #include "defs.h"
 #include "Pcap.h"
-#include "ConsoleHistogram.h"
+
 #include "tjson.hpp"
-#include <pcap/pcap.h>
 
 namespace rtp {
 

@@ -1,10 +1,12 @@
 // ConsoleLogger.cpp: implementation of the CConsoleLogger class.
 //
 //////////////////////////////////////////////////////////////////////
-
+#include <stdio.h>
 #include "ConsoleLogger.h"
 #include <tchar.h>
 #include <psapi.h>
+#include <fcntl.h>
+#include "io.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

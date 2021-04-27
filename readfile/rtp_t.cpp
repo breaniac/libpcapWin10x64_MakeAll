@@ -1,22 +1,11 @@
 #include "rtp_t.h"
 
-//#include <netinet/in.h>
-//#include <netinet/ip.h>
-//#include <net/if.h>
-//#include <netinet/if_ether.h>
-//#include <net/ethernet.h>
-//#include <netinet/tcp.h>
-//#include <netinet/udp.h>
-//#include <arpa/inet.h>
 #include "Headers/ip.h"
 #include "Headers/udp.h"
 #include "Headers/tcp.h"
 #include "Headers/ether.h"
-//#include <Winsock2.h>
-//#include <Ws2tcpip.h>
-#include <string.h>
+#include "ConsoleHistogram.h"
 
-#include <iostream>
 
 namespace rtp {
 

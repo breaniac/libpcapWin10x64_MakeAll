@@ -8,7 +8,6 @@
     <ClCompile Include="stun_t.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="NpcapNework.cpp" />
-    <ClCompile Include="Service.cpp" />
     <ClCompile Include="ConsoleLogger.cpp" />
     <ClCompile Include="ConsoleHistogram.cpp" />
   </ItemGroup>
@@ -23,7 +22,6 @@
     <ClInclude Include="Headers\tcp.h" />
     <ClInclude Include="Headers\udp.h" />
     <ClInclude Include="NpcapNework.h" />
-    <ClInclude Include="Service.h" />
     <ClInclude Include="ConsoleLogger.h" />
     <ClInclude Include="ConsoleHistogram.h" />
   </ItemGroup>

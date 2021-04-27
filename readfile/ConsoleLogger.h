@@ -10,14 +10,7 @@
 #endif // _MSC_VER > 1000
 
 #include "windows.h"
-#include <time.h>
-#include <stdio.h>
-#include "stdlib.h"
-#include <fcntl.h>
-#include "io.h"
-#include "direct.h"
-
-
+//#include "direct.h"
 #include "ntverp.h"
 #if !defined(VER_PRODUCTBUILD) ||  VER_PRODUCTBUILD<3790
 #pragma message ("********************************************************************************************")

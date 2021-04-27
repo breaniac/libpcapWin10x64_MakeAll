@@ -1,16 +1,5 @@
 #pragma once
-#include <iostream>
 #include <pcap/pcap.h>
-//#include "Pcap.h"
-#include "utils.h"
-
-#include <iostream>
-#include <fstream>
-#include <csignal>
-
-#include <Windows.h>
-#include <process.h>
-#include <tchar.h>
 
 enum class NcapRetCodes { Ok, retr_list, out_of_range, open_adapter_err, NA };
 

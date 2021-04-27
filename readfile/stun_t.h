@@ -2,12 +2,8 @@
 #define STUN_T_H
 #include "defs.h"
 #include "Pcap.h"
-#include <pcap/pcap.h>
-#include <vector>
 
 #define MAX_BUFF_SIZE 1500
-
-
 
 namespace stun {
 
